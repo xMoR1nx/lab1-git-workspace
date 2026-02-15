@@ -1,16 +1,30 @@
-# React + Vite
+# Lab 1 – Git Workspace (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Навчальний проєкт для лабораторної роботи №1 з дисципліни, присвяченої роботі з системою контролю версій Git.
 
-Currently, two official plugins are available:
+## Опис проєкту (MVP)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Міні frontend-додаток, створений за допомогою React та Vite.  
+Проєкт демонструє базову структуру React-застосунку та використовується для практики:
 
-## React Compiler
+- ініціалізації Git-репозиторію
+- налаштування локального середовища
+- роботи з гілками (branching strategy)
+- використання Pull Request
+- виконання Code Review
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Технології
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- JavaScript
+- Node.js
+- Git
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Інструкція з запуску
+
+### 1. Клонувати репозиторій
+
+```bash
+git clone <repository-url>
+cd lab1-git-workspace
