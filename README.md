@@ -1,5 +1,9 @@
 # GameTracker 🎮
 
+[![CI/CD Pipeline](https://github.com/xMoR1nx/lab1-git-workspace/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/xMoR1nx/lab1-git-workspace/actions/workflows/ci-cd.yml)
+
+**🌐 Живий сайт:** https://lab1-git-workspace.vercel.app/
+
 Персональна бібліотека ігор — лабораторна робота №3 з дисципліни "Управління ІТ-проєктами".
 
 ## Опис проєкту

@@ -37,6 +37,10 @@ jobs:
 
       - name: Build for production
         run: npm run build
+        env:
+          VITE_APP_NAME: ${{ secrets.VITE_APP_NAME }}
+          VITE_APP_VERSION: ${{ secrets.VITE_APP_VERSION }}
+          VITE_APP_STATUS: ${{ secrets.VITE_APP_STATUS }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
