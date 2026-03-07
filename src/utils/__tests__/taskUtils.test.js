@@ -13,7 +13,7 @@ describe('addTask', () => {
 
   it('додає нове завдання з правильними даними', () => {
     const result = addTask([], 'Здати лабу', '2026-03-01')
-    expect(result.length).toBe(999)
+    expect(result.length).toBe(1)
     expect(result[0].title).toBe('Здати лабу')
     expect(result[0].completed).toBe(false)
   })
