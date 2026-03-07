@@ -32,7 +32,7 @@ jobs:
         run: npm run lint
 
       - name: Run unit tests       # 5. Запуск тестів
-        run: npm run test -- --run
+        run: npm run test:unit -- --run
         continue-on-error: false
 
       - name: Build for production
