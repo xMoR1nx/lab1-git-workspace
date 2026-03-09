@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import posthog from 'posthog-js'
 
 const emptyForm = { title: '', platform: '', genre: '', status: '' }
 
@@ -12,7 +13,16 @@ export default function GameForm({ onAddGame }) {
   function handleSubmit(e) {
     e.preventDefault()
     if (!form.title || !form.platform || !form.genre || !form.status) return
+    
     onAddGame(form)
+
+    // Кастомна подія: гра додана до колекції
+    posthog.capture('game_created', {
+      platform: form.platform,
+      genre: form.genre,
+      status: form.status,
+    })
+
     setForm(emptyForm)
   }
 

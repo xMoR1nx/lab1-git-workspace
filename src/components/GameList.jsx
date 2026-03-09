@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react'
+import posthog from 'posthog-js'
+
 const TABS = [
   { value: 'all', label: '🎮 Всі' },
   { value: 'playing', label: '▶ Граю' },
@@ -15,6 +18,39 @@ export default function GameList({
   onRate,
   onStatusChange,
 }) {
+  const [showUrgentFilter, setShowUrgentFilter] = useState(false)
+
+  useEffect(() => {
+    // Feature Flag: показуємо кнопку тільки якщо прапорець увімкнений
+    posthog.onFeatureFlags(() => {
+      if (posthog.isFeatureEnabled('show-urgent-filter')) {
+        setShowUrgentFilter(true)
+      } else {
+        setShowUrgentFilter(false)
+      }
+    })
+  }, [])
+
+  function handleRemove(game) {
+    posthog.capture('game_deleted', {
+      platform: game.platform,
+      genre: game.genre,
+      status: game.status,
+    })
+    onRemove(game.id)
+  }
+
+  function handleStatusChange(game, newStatus) {
+    if (newStatus === 'completed') {
+      posthog.capture('game_completed', {
+        platform: game.platform,
+        genre: game.genre,
+        rating: game.rating,
+      })
+    }
+    onStatusChange(game.id, newStatus)
+  }
+
   return (
     <div className="games-section">
       <div className="games-toolbar">
@@ -35,6 +71,16 @@ export default function GameList({
               {tab.label}
             </button>
           ))}
+
+          {/* Feature Flag: кнопка показується тільки якщо прапорець увімкнений */}
+          {showUrgentFilter && (
+            <button
+              className={`filter-tab ${filterStatus === 'urgent' ? 'active' : ''}`}
+              onClick={() => onFilterChange('urgent')}
+            >
+              🔥 Термінові
+            </button>
+          )}
         </div>
       </div>
 
@@ -48,7 +94,7 @@ export default function GameList({
             <div key={game.id} className={`game-card status-${game.status}`}>
               <div className="game-card-top">
                 <span className="game-platform">{game.platform}</span>
-                <button className="btn-remove" onClick={() => onRemove(game.id)}>✕</button>
+                <button className="btn-remove" onClick={() => handleRemove(game)}>✕</button>
               </div>
               <h3 className="game-title">{game.title}</h3>
               <span className="game-genre">{game.genre}</span>
@@ -67,7 +113,7 @@ export default function GameList({
                 <select
                   value={game.status}
                   className="status-select"
-                  onChange={(e) => onStatusChange(game.id, e.target.value)}
+                  onChange={(e) => handleStatusChange(game, e.target.value)}
                 >
                   <option value="playing">▶ Граю</option>
                   <option value="completed">✅ Пройшов</option>

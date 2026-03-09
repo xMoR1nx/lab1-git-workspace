@@ -17,6 +17,8 @@
     "test": "npm run test:unit && npm run test:e2e"
   },
   "dependencies": {
+    "@posthog/react": "^1.8.2",
+    "posthog-js": "^1.360.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
